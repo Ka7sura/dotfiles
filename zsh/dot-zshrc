@@ -97,11 +97,27 @@ function ra {
   command rm -f -- "$tempfile" 2>/dev/null
 }
 
+# 当前文件夹下是否存在requirement.txt文件，如果有就检测虚拟环境，如果也有就自动进入虚拟环境
+function chpwd() {
+  VENV_PATH=$HOME"/.pyvenv/"
+  if [[ -f "requirements.txt" ]]; then
+    VENV_DIR=$VENV_PATH$(basename $PWD)
+    if [[ -d "$VENV_DIR" ]]; then
+      echo "Activating virtual environment..."
+      source $VENV_DIR"/bin/activate"
+    else
+      echo "Use mkvenv-py to make virtual environment"
+      alias mkvenv-py="python -m venv $VENV_DIR"
+      alias cdvenv-py="source $VENV_DIR/bin/activate"
+      alias rmvenv-py="rm -rf $VENV_DIR"
+    fi
+  else
+    if alias mkvenv-py >/dev/null 2>&1; then
+      unalias mkvenv-py rmvenv-py cdvenv-py
+    fi
+  fi
+}
 
-# Ensure XDG_RUNTIME_DIR is set
-# if test -z "$XDG_RUNTIME_DIR"; then
-#     export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
-# fi
 source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh
 source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/site-functions/powerlevel10k/powerlevel10k.zsh-theme
