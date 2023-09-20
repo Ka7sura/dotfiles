@@ -1,0 +1,182 @@
+/* Keyframes */
+
+@keyframes blink-critical {
+	to {
+		/*color: @white;*/
+		color: rgba(255, 39, 0, 0.75)
+	}
+}
+
+/* Styles */
+
+/* Colors (gruvbox) */
+@define-color black	  #282828;
+@define-color red	    #E74C3C;
+@define-color green	  #00f91a;
+@define-color yellow	#fffb0d;
+@define-color blue	  #3498db;
+@define-color purple	#8e44ad;
+@define-color gray	  #a89984;
+@define-color white	  #ffffff;
+@define-color bggray	rgba(0, 0, 0, 0.3);
+@define-color tooltip-bg	rgba(0, 0, 0, 0.65);
+
+@define-color warning	  rgba(255, 147, 0, 0.75);
+/* Reset all styles */
+* {
+	border: none;
+	min-height: 0;
+	margin: 0;
+	font-family: "JetBrainsMono Nerd Font Mono", "Font Awesome 6 Free";
+	font-size: 14pt;
+  opacity: 1;
+  background: transparent;
+}
+
+window#waybar {
+    /* background: rgba(0, 0, 0, 0.15); */
+    /* border-bottom: 1px; */
+    /* border-radius: 16px; */
+    /* margin-right: 16px; */
+    /* margin-left: 16px; */
+}
+
+tooltip {
+  background: rgba(169, 169, 169, 0.75);
+}
+tooltip label {
+  color: RoyalBlue;
+  opacity: 1;
+}
+
+/* The whole bar */
+
+/* Each module */
+#battery,
+#clock,
+#cpu,
+#memory,
+#network,
+#wireplumber,
+#temperature,
+#tray,
+#backlight,
+#idle_inhibitor,
+#keyboard-state,
+#bluetooth,
+#mpris {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+/* Each critical module */
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.critical.discharging {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-name: blink-critical;
+	animation-duration: 2s;
+}
+
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning.discharging {
+	color: @warning;
+}
+
+/* And now modules themselves in their respective order */
+
+.modules-right{
+    margin-right: 16px;
+    border-radius: 10px;
+    background: @bggray;
+}
+.modules-left{
+    margin-left: 16px;
+    border-radius: 10px;
+    background: @bggray;
+    opacity: 0.75;
+}
+.modules-middle{
+    border-radius: 10px;
+    background: @bggray;
+}
+
+#workspaces {
+    border-radius: 10px;
+    transition: none;
+    background: rgba(0, 0, 0, 0.5);
+}
+/* Workspaces stuff */
+#workspaces button {
+	padding-left: 10pt;
+	padding-right: 10pt;
+    background: transparent;
+    color:  rgba(255, 255, 255, 0.75);
+}
+/* Inactive (on unfocused output) */
+#workspaces button.active {
+	color: @white;
+}
+/* Contains an urgent window */
+#workspaces button.urgent {
+	color: @white;
+	background: @warning;
+}
+
+/* Style when cursor is on the button */
+#workspaces button:hover {
+	background: @purple;
+  border-radius: 10px;
+	color: @white;
+}
+
+#keyboard-state, #backlight, #wireplumber, #battery, #bluetooth {
+	margin-right: 0px;
+	margin-left: 0px;
+	background: transparent;
+	color: @blue;
+  /* opacity: 0.6; */
+}
+
+#memory, #cpu, #temperature, #network {
+	background: transparent;
+	color: @yellow;
+}
+
+#idle_inhibitor, #clock, #custom-weather {
+	background: transparent;
+	color: @green;
+	/* font-family: "Awesome", "JetBrainsMono Nerd Font Mono"; */
+	/* font-family: monospace; */
+}
+
+#tray {
+  font-size: 16pt;
+}
+#tray menu {
+  background: @black;
+  color: @white;
+}
+
+#mpris {
+  color: @white;
+  border-radius: 10px;
+  background: @bggray;
+}
+
+#window {
+    padding: 0px 10px;
+    border-radius: 10px;
+    color: @white;
+    background: @bggray;
+}
+#submap {
+    color: @white;
+}

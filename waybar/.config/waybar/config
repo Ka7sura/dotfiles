@@ -1,0 +1,222 @@
+{
+	"layer": "top",
+	"modules-left": ["wlr/workspaces","hyprland/submap"],
+	"modules-center": ["hyprland/window","cava"],
+	"modules-right": ["keyboard-state","battery","bluetooth","backlight","wireplumber","memory","cpu","temperature","network","clock",
+  "custom/weather",
+  "idle_inhibitor","tray"],
+
+  "wlr/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "9": "",
+    },
+    "sort-by-number": true
+  },
+  "network": {
+    "format-wifi": "󰖩",
+    "format-ethernet": "󰈁",
+    "tooltip-format": " {ifname} {ipaddr}/{cidr}\n gateway: {gwaddr}\n mask: {netmask}",
+    "tooltip-format-wifi": " {ifname} {essid}({signalStrength}%)\n {ipaddr}/{cidr}\n gateway: {gwaddr}\n mask: {netmask}",
+    "format-linked": "(No IP)",
+    "format-disconnected": "󱞐",
+    "format-alt": "{bandwidthUpBytes} {bandwidthDownBytes}",
+    "max-length": "20",
+    "interval": 2
+  },
+  "temperature": {
+    "interval": 2,
+    "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C",
+  },
+  "hyprland/window": {
+    "format": "{initialClass}",
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "on-click": "swaybg -i $(find ~/Pictures/wallpaper -type f | shuf -n 1) -m fill",
+    "format": {
+      "numlock": "N{icon}",
+      "capslock": "C{icon} "
+  },
+  "format-icons": {
+    "locked": "",
+    "unlocked": ""
+  }
+},
+
+"tray":{
+  "icon-size":24,
+  "spacing": 12,
+  "reverse-direction": true,
+},
+  "clock": {
+      "format": "{:%H:%M %m/%d %a}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+                  "weeks-pos"     : "left",
+                  "on-scroll"     : 1,
+                  "mode-mon-col"  : 3,
+                  "on-click-right": "mode",
+                  "format": {
+                            "months":     "<span color='#ffead3'><b>{}</b></span>",
+                            "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                            "weeks":      "<span color='#99ffdd'><b>{}</b></span>",
+                            "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                            "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                            }
+                  },
+      "actions":  {
+                  "on-click-right": "mode",
+                  "on-scroll-up": "shift_up",
+                  "on-scroll-down": "shift_down"
+                  }
+  },
+  "cpu": {
+      "format": "{usage}%",
+      "format-alt": "{avg_frequency}",
+      "interval": 2,
+      "tooltip": true
+  }, 
+  "custom/weather": {
+      //shows the current weather and forecast
+      "tooltip" : true,
+      "format" : "{}",
+      "interval" : 3600,
+      "exec" : "~/.config/waybar/modules/weather.py",
+      "return-type" : "json"
+  },
+  "battery": {
+      "format": "{icon}",
+      "format-alt": "{icon}{capacity}%",
+      "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      "format-charging": "󰂄{capacity}%",
+      "format-plugged": "",
+      "full-at": 100,
+      "tooltip-format": "{power}\n{timeTo}",
+      "states": {
+          "warning": 25,
+          "critical": 10
+      },
+  },
+  "bluetooth": {
+      "format-alt": "{status}",
+      "format": "",
+      "format-disabled": "󰂲",
+      "format-connected": "󰂱",
+      "tooltip-format": "{controller_alias}\t{controller_address}",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{num_connections} connected {device_alias}\t{device_address}"
+  },
+  "wireplumber": {
+      "scroll-step": 1.0,
+      "format": "{icon}{volume}%",
+      "format-muted": "󰸈",
+      "format-icons": ["", "", ""],
+      "on-click-right": "pavucontrol",
+      "on-click-middle": "wpctl set-mute @default_audio_sink@ toggle",
+      "on-scroll-up": "wpctl set-volume @default_audio_sink@ 5%+",
+      "on-scroll-down": "wpctl set-volume @default_audio_sink@ 5%-",
+  },
+ "backlight": {
+      "format": "{icon}",
+      "format-alt": "{icon} {percent}%",
+      "format-icons": ["󰃞", "󰃟", "󰃠"],
+      "on-scroll-up": "brightnessctl s 5%+",
+      "on-scroll-down": "brightnessctl s 5%-"
+  },
+
+  "memory": {
+    "interval": 5,
+    "format-alt": "󰍛{used:0.1f}G",
+    "format": "󰍛{percentage}%",
+    "tooltip-format": "Mem: {used:0.1f}G/{total:0.1f} {percentage}% \nSwap: {swapUsed}G/{swapTotal}G {swapPercentage}%",
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "icon-theme": "numix-circle",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+       "alacritty"
+    ],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    }
+},
+"mpris": {
+  "format": "{player_icon} {player}",
+  "format-paused": "{status_icon} {player}",
+  //"format-stopped": "{}",
+  "interval" : 2,
+  "player-icons": {
+    "default": "▶",
+    "mpv": "🎵",
+    "firefox": "󰈹",
+    "vlc": "󰕼",
+  },
+  "status-icons": {
+    "paused": "⏸"
+},
+},
+"hyprland/submap": {
+  "format": "✌️ {}",
+  "max-length": 8,
+  "tooltip": false
+},
+  "custom/launcher":{
+      "format": " ",
+      "on-click": "firefox",
+      "on-click-right": "killall firefox"
+  },
+  "user": {
+    "format": "{user} (up {work_H}h↑)",
+    "interval": 60,
+    "icon": true,
+},
+
+  ////////
+  "custom/gpuinfo":{
+      "tooltip" : true,
+      "format" : "{}",
+      "interval" : 2,
+      "exec-if" : "/home/zz/.config/waybar/modules/temp.sh",
+      "return-type" : "",
+  }
+},
+"cava": {
+//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+        "framerate": 30,
+        "autosens": 1,
+        "sensitivity": 100,
+        "bars": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pipewire",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+                   }
+    },

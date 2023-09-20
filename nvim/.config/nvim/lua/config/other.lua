@@ -1,0 +1,53 @@
+-- 其他的vimscript
+
+-- 实现插入模式自动切换为rime输入法
+-- vim.cmd([[
+-- if &cp || exists("g:loaded_fcitx") || (!exists('$DISPLAY') && !exists('$WAYLAND_DISPLAY'))
+--   finish
+-- endif
+-- let s:keepcpo = &cpo
+-- set cpo&vim
+--
+-- let g:loaded_fcitx = 1
+-- let g:fcitx5_remote = '/usr/bin/fcitx5-remote'
+-- let g:fcitx5_rime = 1
+--
+-- function s:setup_cmd()
+--   function Fcitx2en()
+--     let inputstatus = trim(system(g:fcitx5_remote))
+--     if inputstatus == '1'
+--       let b:inputtoggle = 1
+--       call system(g:fcitx5_remote . ' -o')		" -o 切换到第二个，即英语输入法
+--     endif
+--   endfunction
+--   function Fcitx2zh()
+--     try
+--       if b:inputtoggle == 1
+--         call system(g:fcitx5_remote . ' -c')	" -c 切换到第一个，rime
+--         let b:inputtoggle = 0
+--       endif
+--     catch /inputtoggle/
+--       let b:inputtoggle = 0
+--     endtry
+--   endfunction
+-- endfunction
+--
+-- call s:setup_cmd()
+-- call Fcitx2en()			" 打开vim，就切换为英文布局
+--
+-- " Register autocmd if successfully loaded.
+-- if exists("g:loaded_fcitx")
+--   if exists('##InsertLeavePre')
+--     au InsertLeavePre * call Fcitx2en()
+--   else
+--     au InsertLeave * call Fcitx2en()
+--   endif
+--   au InsertEnter * call Fcitx2zh()
+--   au CmdlineEnter [/\?] call Fcitx2zh()
+--   au CmdlineLeave [/\?] call Fcitx2en()
+--   au ExitPre * call Fcitx2zh()
+-- endif
+--
+-- let &cpo=s:keepcpo
+-- unlet s:keepcpo
+-- ]])
