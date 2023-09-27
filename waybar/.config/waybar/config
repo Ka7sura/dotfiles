@@ -1,17 +1,23 @@
 {
 	"layer": "top",
-	"modules-left": ["wlr/workspaces","hyprland/submap"],
-	"modules-center": ["hyprland/window","cava"],
+	"modules-left": ["hyprland/workspaces","cava","hyprland/submap"],
+	"modules-center": ["hyprland/window"],
 	"modules-right": ["keyboard-state","battery","bluetooth","backlight","wireplumber","memory","cpu","temperature","network","clock",
   "custom/weather",
   "idle_inhibitor","tray"],
 
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
       "1": "",
       "2": "",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
       "9": "",
     },
     "sort-by-number": true

@@ -60,6 +60,7 @@ tooltip label {
 #wireplumber,
 #temperature,
 #tray,
+#cava,
 #backlight,
 #idle_inhibitor,
 #keyboard-state,
@@ -171,7 +172,7 @@ tooltip label {
   background: @bggray;
 }
 
-#window {
+#cava, #window {
     padding: 0px 10px;
     border-radius: 10px;
     color: @white;
