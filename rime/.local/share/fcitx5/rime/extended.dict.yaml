@@ -6,12 +6,12 @@ use_preset_vocabulary: true
 # 此处为 输入法所用到的词库，既补充拓展词库的地方
 import_tables:
   - luna_pinyin
-  - sougou
+  # - sougou
   - jixie
-  - xinhao
+  - my
   - chaizi
   - latex
-  - zhwiki
+  # - zhwiki
   - moegirl
   - enbase
 ...
