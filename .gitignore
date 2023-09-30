@@ -9,6 +9,7 @@ zsh/dot-zshenv
 git/*
 
 rime/.local/share/fcitx5/rime/extended.userdb/*
+rime/.local/share/fcitx5/rime/clover.userdb/*
 rime/.local/share/fcitx5/rime/user.yaml
 rime/.local/share/fcitx5/rime/build/*
 rime/.local/share/fcitx5/rime/sync/*
