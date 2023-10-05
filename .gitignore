@@ -10,9 +10,10 @@ git/*
 
 rime/.local/share/fcitx5/rime/extended.userdb/*
 rime/.local/share/fcitx5/rime/clover.userdb/*
-rime/.local/share/fcitx5/rime/user.yaml
 rime/.local/share/fcitx5/rime/build/*
 rime/.local/share/fcitx5/rime/sync/*
+rime/.local/share/fcitx5/rime/user.yaml
+rime/.local/share/fcitx5/rime/installation.yaml
 
 ranger/.config/ranger/trash_history
 ranger/.config/ranger/plugins/__pycache__/*
