@@ -112,6 +112,9 @@ function chpwd() {
       alias rmvenv-py="rm -rf $VENV_DIR"
     fi
   else
+    if [ "$VIRTUAL_ENV" ]; then
+      deactivate
+    fi
     if alias mkvenv-py >/dev/null 2>&1; then
       unalias mkvenv-py rmvenv-py cdvenv-py
     fi
