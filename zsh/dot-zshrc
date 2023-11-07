@@ -9,19 +9,24 @@ SAVEHIST=3000
 setopt hist_ignore_all_dups # 不记录重复
 setopt hist_ignore_space # 空格开头不记录
 
-# completion
+## Colors
+LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:'
+export LS_COLORS
+autoload -U colors zsh/terminfo && colors
+
+## completion
+autoload -Uz compinit promptinit && compinit
+promptinit; prompt gentoo
 zstyle :compinstall filename '/home/kasura/.zshrc'
 zstyle ':completion:*' menu select
 # zstyle ':completion::complete:*' gain-privileges 1 # sudo下自动补全
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' # 智能大小写
-autoload -Uz compinit promptinit
-compinit
-promptinit; prompt gentoo
-# 扩展删除单词的边界
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # 补全的颜色
+# 扩展删除单词(C-W)的边界
 WORDCHARS=${WORDCHARS/\/}
 # WORDCHARS=${WORDCHARS//[\/-]}
 
-# Key bindings
+## Key bindings
 # 声明了一个全局关联数组key，用于保存特殊按键与对应的terminfo能力
 typeset -g -A key 
 key[Home]="${terminfo[khome]}"
@@ -63,14 +68,14 @@ key[Control-Right]="${terminfo[kRIT5]}"
 [[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 
-# History search
+## History search
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
-# alias
+## alias
 alias ls="ls --color -F"
 alias ll="ls --color -lh"
 alias la="ls --color -lah"
@@ -90,6 +95,7 @@ alias ssh="kitty +kitten ssh"
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 alias nvrun='__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia "$@"'
 
+## Others
 # 使用 ranger 时，Q 退出时进入最后的工作目录
 function ra {
   local IFS=$'\t\n'
@@ -101,7 +107,6 @@ function ra {
   fi
   command rm -f -- "$tempfile" 2>/dev/null
 }
-
 # 当前文件夹下是否存在requirement.txt文件，如果有就检测虚拟环境，如果也有就自动进入虚拟环境
 function chpwd() {
   VENV_PATH=$HOME"/.pyvenv/"
@@ -126,6 +131,7 @@ function chpwd() {
   fi
 }
 
+## Plugins
 source /usr/share/zsh/site-functions/zsh-autosuggestions.zsh
 source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/site-functions/powerlevel10k/powerlevel10k.zsh-theme
