@@ -12,6 +12,16 @@ M.config = {
 		end,
 	},
 	{
+		"Exafunction/codeium.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+		config = function()
+			require("codeium").setup({})
+		end,
+	},
+	{
 		"hrsh7th/nvim-cmp", -- completion plugin
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp", -- use nvim-lsp to autocomplete
@@ -86,6 +96,7 @@ M.configfunc = function()
 		-- }),
 		sources = cmp.config.sources({
 			{ name = "nvim_lsp" },
+			{ name = "codeium" },
 			{ name = "buffer" }, -- text within current buffer
 		}, {
 			{ name = "path" }, -- file system paths
