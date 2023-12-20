@@ -128,6 +128,15 @@ C.mason_lsp = function()
 		function(server_name) -- default handler (optional)
 			require("lspconfig")[server_name].setup({})
 		end,
+		["matlab_ls"] = function()
+			require("lspconfig").matlab_ls.setup({
+				settings = {
+					matlab = {
+						installPath = "/opt/matlab2022b",
+					},
+				},
+			})
+		end,
 		-- ["rust_analyzer"] = function()
 		-- 	require("rust-tools").setup({})
 		-- end,
