@@ -24,8 +24,8 @@ opt.smartcase = true -- 智能大小写（对于只有一个大写字母的搜�
 -- vim.opt.showmatch = true
 
 -- tabs & indentation
-opt.tabstop = 2 -- 默认缩进2个空格
-opt.shiftwidth = 2 -- number of spaces to use for (auto)indent step
+opt.tabstop = 4 -- 默认缩进2个空格
+opt.shiftwidth = 4 -- number of spaces to use for (auto)indent step
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 -- opt.softtabstop = 2  -- 使用tab的空格数,number of spaces that <Tab> uses while editing
