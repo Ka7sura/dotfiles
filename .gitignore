@@ -8,6 +8,8 @@ zsh/dot-zshenv
 
 git/*
 
+fcitx5/.config/fcitx5/conf/cached_layouts
+
 rime/.local/share/fcitx5/rime/extended.userdb/*
 rime/.local/share/fcitx5/rime/clover.userdb/*
 rime/.local/share/fcitx5/rime/build/*
