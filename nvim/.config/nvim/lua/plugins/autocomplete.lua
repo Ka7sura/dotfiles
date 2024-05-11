@@ -2,7 +2,7 @@ local M = {}
 M.config = {
 	{
 		"L3MON4D3/LuaSnip", -- snippets engine
-		version = "<CurrentMajor>.*", -- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 		build = "make install_jsregexp", -- install jsregexp (optional!).
 		dependencies = {
 			"rafamadriz/friendly-snippets", -- useful snippets
