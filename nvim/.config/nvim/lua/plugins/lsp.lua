@@ -201,15 +201,15 @@ end
 
 C.dap = function()
 	local dap = require("dap")
-	local dapui = require("dapui")
-	dapui.setup()
+	-- local dapui = require("dapui")
+	-- dapui.setup()
 
 	local m = { noremap = true }
 	vim.keymap.set("n", "<leader>'q", ":Telescope dap<CR>", m)
 	vim.keymap.set("n", "<leader>'t", dap.toggle_breakpoint, m)
 	vim.keymap.set("n", "<leader>'n", dap.continue, m)
 	vim.keymap.set("n", "<leader>'s", dap.terminate, m)
-	vim.keymap.set("n", "<leader>'u", dapui.toggle, m)
+	-- vim.keymap.set("n", "<leader>'u", dapui.toggle, m)
 
 	vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#993939", bg = "#31353f" })
 	vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "#31353f" })
