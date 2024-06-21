@@ -1,5 +1,6 @@
 export RANGER_LOAD_DEFAULT='FALSE'
 export EDITOR='nvim'
+export _JAVA_AWT_WM_NONREPARENTING='1' # 修复matlab无界面
 
 typeset -U path PATH
 path=(~/.local/bin /opt/bin $path)
