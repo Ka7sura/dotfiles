@@ -4,12 +4,13 @@ local C = {}
 M.config = {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
+		tag = "0.1.8",
 		config = function()
 			C.telescope()
 		end,
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
+			{ "BurntSushi/ripgrep" },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
@@ -55,10 +56,25 @@ C.telescope = function()
 		},
 	})
 	local builtin = require("telescope.builtin")
-	vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-	vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-	vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-	vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+	vim.keymap.set(
+		"n",
+		"<leader>ff",
+		builtin.find_files,
+		{ desc = "列出当前工作目录中的文件，尊重 .gitignore " }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>fg",
+		builtin.live_grep,
+		{ desc = "在当前工作目录中搜索字符串并在键入时实时获取结果，尊重 .gitignore" }
+	)
+	vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "列出当前 neovim 实例中打开的缓冲区" })
+	vim.keymap.set(
+		"n",
+		"<leader>fh",
+		builtin.help_tags,
+		{ desc = "列出可用的帮助标签并打开一个新窗口，其中包含相关帮助信息 " }
+	)
 	telescope.load_extension("fzf")
 
 	-- pcall(telescope.load_extension, "env")
