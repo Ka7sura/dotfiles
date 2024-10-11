@@ -134,15 +134,15 @@ au({ "FileType" }, {
 local input_toggle = 0
 function Fcitx2en()
 	local input_status = tonumber(io.popen("fcitx5-remote"):read("*all"))
-	if input_status == 1 then
-		os.execute("fcitx5-remote -o")
-		input_toggle = 1
+	if input_status == 2 and input_toggle == 1 then
+		os.execute("fcitx5-remote -c")
 	end
 end
 function Fcitx2zh()
 	local input_status = tonumber(io.popen("fcitx5-remote"):read("*all"))
-	if input_status == 2 and input_toggle == 1 then
-		os.execute("fcitx5-remote -c")
+	if input_status == 1 then
+		os.execute("fcitx5-remote -o")
+		input_toggle = 1
 	end
 end
 au(
