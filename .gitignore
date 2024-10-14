@@ -1,6 +1,12 @@
 copyq/.config/copyq/*
 !copyq/.config/copyq/copyq.conf
 
+emacs/.config/emacs/*
+!emacs/.config/emacs/init.el
+!emacs/.config/emacs/early-init.el
+!emacs/.config/emacs/lisp
+
+
 *.log
 *.dat
 
