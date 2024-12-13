@@ -91,7 +91,6 @@ alias gc="git commit -m"
 alias gco="git checkout"
 alias vim=nvim
 alias py=python
-alias ssh="kitty +kitten ssh"
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 alias nvrun='__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia "$@"'
 ## Device
